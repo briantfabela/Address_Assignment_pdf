@@ -6,7 +6,6 @@ import find_tools
 # get pdf location (for testing it will be in 'desktop\PDF_reader')
 working_dir = path.join(Path.home(), r"Desktop\PDF_Reader")
 
-
 # get PDF to read
 pdf_document = "755-33-012_AddressAssignment2019.pdf"
 

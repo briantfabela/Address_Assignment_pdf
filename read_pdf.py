@@ -1,6 +1,7 @@
 import PyPDF2
 from os import chdir, path, getcwd
 from pathlib import Path
+import find_tools
 
 # get pdf location (for testing it will be in 'desktop\PDF_reader')
 working_dir = path.join(Path.home(), r"Desktop\PDF_Reader")
@@ -61,25 +62,13 @@ class AddressPoint:
         pidnum_txt = self.clean_text.split('Book \n')[1]
         
         # iterate through pid_nmum text and extract just the 1st 6 integers
-        pidnum = self.iter_ndigits(pidnum_txt, 8)
+        pidnum = find_tools.iter_ndigits(pidnum_txt, 8)
 
         # FULL ADDRESS, ZIPCODE, EMZ (AREA 3)
         location_txt = self.clean_text.split('ASSIGNED AS:\n ')[1]
 
         # return dict
         return {}
-
-    def iter_ndigits(self, text_str, n): # returns the firsts n digits from a text
-        '''iterates through a string and retuns only the first n ints'''
-
-        ndigits = ''
-        for char in text_str:
-            if char.isdigit():
-                ndigits += char
-            if len(ndigits) == n:
-                return ndigits
-        # did not find enough instances of digits, return all found
-        return ndigits
 
     def print_info(self):
         '''print info from self AddressPoint instance'''
